@@ -1,0 +1,23 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual envs
+.venv/
+venv/
+
+# Local DB / vector store
+chroma_db/
+
+# Ollama / model caches (only if you ever bind-mount them locally)
+.ollama/
+
+# Logs / misc
+*.log
+selected_pages.txt
+
+# Data (dataset is large; stored at repo root ../data)
+../data/

@@ -1,0 +1,60 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the data directory (so we can download to it and read from it)
+      - ../data:/data
+      # Mount the vector database for persistence
+      - ./chroma_db:/app/chroma_db
+      # Persist HF/Torch caches so model downloads survive container rebuilds
+      - hf_cache:/root/.cache/huggingface
+      - torch_cache:/root/.cache/torch
+      # LlamaIndex caches big embedding models (e.g. BAAI/bge-m3) here
+      - llama_index_cache:/root/.cache/llama_index
+    environment:
+      # Ensure code can find the OCR pages inside the container
+      - OCR_DATA_DIR=/data
+      
+      # Limit ingestion for testing/demo purposes (optional)
+      - LIMIT_INGEST=5000
+
+      # Reduce noisy SSL failures from Chroma telemetry (posthog)
+      - ANONYMIZED_TELEMETRY=False
+
+      # LLM endpoint (Points to internal ollama service by default)
+      - VLLM_API_BASE=http://ollama:11434/v1
+      # Default model is intentionally small for faster local setup.
+      # You can override this to e.g. llama3, mistral, qwen2.5, etc.
+      - VLLM_MODEL_NAME=llama3
+
+      # Chroma persistence inside container
+      - CHROMA_PERSIST_DIR=/app/chroma_db
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    environment:
+      # Increase default context window used by the Ollama runner.
+      # Without this, the runner defaults to 4096 even if the model supports 8192.
+      - OLLAMA_CONTEXT_LENGTH=8192
+    # Uncomment to enable GPU support on Linux with NVIDIA drivers
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+volumes:
+  ollama_data:
+  hf_cache:
+  torch_cache:
+  llama_index_cache:
