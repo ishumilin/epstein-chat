@@ -122,6 +122,10 @@ python chat.py "Who Censored Roger Rabbit?"
 ## Configuration
 The system uses environment variables for configuration. You can set these in your shell or a `.env` file.
 
+> [!NOTE]
+> **Dataset licensing:** The OCR dataset is downloaded separately from Hugging Face and remains subject to the dataset’s own license/terms.
+> This repository’s MIT license applies to the source code only.
+
 | Variable | Description | Default |
 | :--- | :--- | :--- |
 | `OCR_DATA_DIR` | Path to the folder containing markdown files | `data` |
