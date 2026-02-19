@@ -1,10 +1,13 @@
 # Epstein Documents Analysis System
 
 > [!NOTE]
-> **For investigators, journalists, NGOs, and independent researchers**
 >
-> We’ve also developed a **convenient web frontend** for people who prefer not to run the system locally.
-> To balance demand, access is **provided on request**.
+> We also offer a hosted web app for researchers and investigators who can’t run the project themselves or lack technical expertise.
+> Access is available on request to manage capacity, priority goes to journalists, NGOs, and public interest investigations with a clear research purpose.
+
+> [!IMPORTANT]
+> **Dataset licensing:** The OCR dataset is downloaded separately from Hugging Face and remains subject to the dataset’s own license/terms.
+> This repository’s MIT license applies to the source code only.
 
 ## Overview
 This repository provides a high-precision interface for querying the Epstein Documents dataset. Our approach is engineered to solve the specific challenges of information retrieval within large-scale, noisy OCR datasets where accuracy and auditability are paramount.
@@ -121,10 +124,6 @@ python chat.py "Who Censored Roger Rabbit?"
 
 ## Configuration
 The system uses environment variables for configuration. You can set these in your shell or a `.env` file.
-
-> [!NOTE]
-> **Dataset licensing:** The OCR dataset is downloaded separately from Hugging Face and remains subject to the dataset’s own license/terms.
-> This repository’s MIT license applies to the source code only.
 
 | Variable | Description | Default |
 | :--- | :--- | :--- |
