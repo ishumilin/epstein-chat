@@ -12,6 +12,14 @@
 ## Overview
 This repository provides a high-precision interface for querying the Epstein Documents dataset. Our approach is engineered to solve the specific challenges of information retrieval within large-scale, noisy OCR datasets where accuracy and auditability are paramount.
 
+## Release Plan
+- [x] **Phase 1: Exclusive Early Access**
+  Restricted availability granted to verified journalists, NGOs, and independent investigators for targeted research.
+- [x] **Phase 2: Initial Public Release**
+  Public availability of a limited, curated dataset to allow broader community exploration and testing.
+- [ ] **Phase 3: Unrestricted Public Access**
+  Full public access to the complete, comprehensive dataset for all users.
+
 ## Technical Architecture & Problem Solving
 The primary challenge of this dataset is the high density of specific entities - such as phone numbers, flight tail numbers, and timestamps - buried within unstructured, extracted text from scanned documents. Standard vector-only search often fails to capture the granularity required for these "needle-in-a-haystack" investigative queries. 
 
